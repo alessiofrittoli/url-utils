@@ -40,6 +40,11 @@
 			"types": "./dist/parse/index.d.ts",
 			"import": "./dist/parse/index.mjs",
 			"require": "./dist/parse/index.js"
+		},
+		"./slash": {
+			"types": "./dist/slash/index.d.ts",
+			"import": "./dist/slash/index.mjs",
+			"require": "./dist/slash/index.js"
 		}
 	},
 	"sideEffects": false,
@@ -58,7 +63,9 @@
 		"test:check": "pnpm test check.test.ts",
 		"test:check:jsdom": "JSDOM=true pnpm test:check",
 		"test:parse": "pnpm test parse.test.ts",
-		"test:parse:jsdom": "JSDOM=true pnpm test:parse"
+		"test:parse:jsdom": "JSDOM=true pnpm test:parse",
+		"test:slash": "pnpm test slash.test.ts",
+		"test:slash:jsdom": "JSDOM=true pnpm test:slash"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.17.0",
