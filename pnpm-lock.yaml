@@ -26,6 +26,9 @@ importers:
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7
+      esbuild:
+        specifier: 0.24.0
+        version: 0.24.0
       eslint:
         specifier: ^9.17.0
         version: 9.17.0
@@ -4849,7 +4852,7 @@ snapshots:
       chokidar: 4.0.3
       consola: 3.3.0
       debug: 4.4.0
-      esbuild: 0.24.1
+      esbuild: 0.24.0
       joycon: 3.1.1
       picocolors: 1.1.1
       postcss-load-config: 6.0.1
