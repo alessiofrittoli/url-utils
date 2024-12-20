@@ -7,10 +7,6 @@ Version 0.1.0
 ### Table of Contents
 
 - [Getting started](#getting-started)
-- [Development](#development)
-	- [ESLint](#eslint)
-	- [Jest](#jest)
-- [Contributing](#contributing)
 - [Security](#security)
 - [Credits](#made-with-)
 
@@ -32,7 +28,7 @@ pnpm i @alessiofrittoli/url-utils
 
 ---
 
-### Development
+<!-- ### Development
 
 #### Install depenendencies
 
@@ -104,7 +100,7 @@ pnpm test:coverage
 Contributions are truly welcome!\
 Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
 
----
+--- -->
 
 ### Security
 
