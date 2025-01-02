@@ -9,6 +9,13 @@ describe( 'backToForwardSlashes', () => {
 		expect( backToForwardSlashes( '/Some/Path/To/filename.ts' ) )
 			.toBe( '/Some/Path/To/filename.ts' )
 	} )
+
+
+	it( 'throws a TypeError if the given input is not type of string', () => {
+		// @ts-expect-error negative testing
+		expect( () => backToForwardSlashes( true ) ).toThrow( 'Input must be a string.' )
+	} )
+
 } )
 
 
@@ -19,6 +26,13 @@ describe( 'forwardToBackSlashes', () => {
 		expect( forwardToBackSlashes( '\\Some\\Path\\To\\filename.ts' ) )
 			.toBe( '\\Some\\Path\\To\\filename.ts' )
 	} )
+
+
+	it( 'throws a TypeError if the given input is not type of string', () => {
+		// @ts-expect-error negative testing
+		expect( () => forwardToBackSlashes( true ) ).toThrow( 'Input must be a string.' )
+	} )
+
 } )
 
 
@@ -46,6 +60,13 @@ describe( 'addLeadingSlash', () => {
 		expect( addLeadingSlash( '/some-string', '\\' ) )
 			.toBe( '\\some-string' )
 	} )
+
+
+	it( 'throws a TypeError if the given input is not type of string', () => {
+		// @ts-expect-error negative testing
+		expect( () => addLeadingSlash( true ) ).toThrow( 'Input must be a string.' )
+	} )
+
 } )
 
 
@@ -59,6 +80,13 @@ describe( 'removeLeadingSlash', () => {
 		expect( removeLeadingSlash( '\\some-string' ) )
 			.toBe( 'some-string' )
 	} )
+
+
+	it( 'throws a TypeError if the given input is not type of string', () => {
+		// @ts-expect-error negative testing
+		expect( () => removeLeadingSlash( true ) ).toThrow( 'Input must be a string.' )
+	} )
+
 } )
 
 
@@ -86,6 +114,13 @@ describe( 'addTrailingSlash', () => {
 		expect( addTrailingSlash( 'some-string/', '\\' ) )
 			.toBe( 'some-string\\' )
 	} )
+
+
+	it( 'throws a TypeError if the given input is not type of string', () => {
+		// @ts-expect-error negative testing
+		expect( () => addTrailingSlash( true ) ).toThrow( 'Input must be a string.' )
+	} )
+
 } )
 
 
@@ -99,4 +134,11 @@ describe( 'removeTrailingSlash', () => {
 		expect( removeTrailingSlash( 'some-string\\' ) )
 			.toBe( 'some-string' )
 	} )
+
+
+	it( 'throws a TypeError if the given input is not type of string', () => {
+		// @ts-expect-error negative testing
+		expect( () => removeTrailingSlash( true ) ).toThrow( 'Input must be a string.' )
+	} )
+
 } )

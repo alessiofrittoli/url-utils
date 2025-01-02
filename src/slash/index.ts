@@ -6,7 +6,11 @@
  * @param	s The string to process. 
  * @returns	The processed given string.
  */
-export const backToForwardSlashes = ( s: string ) => s.replace( /\\/g, '/' )
+export const backToForwardSlashes = ( s: string ) => {
+	if ( typeof s !== 'string' ) throw new TypeError( 'Input must be a string.' )
+	
+	return s.replace( /\\/g, '/' )
+}
 
 
 /**
@@ -15,7 +19,11 @@ export const backToForwardSlashes = ( s: string ) => s.replace( /\\/g, '/' )
  * @param	s The string to process. 
  * @returns	The processed given string.
  */
-export const forwardToBackSlashes = ( s: string ) => s.replace( /\//g, '\\' )
+export const forwardToBackSlashes = ( s: string ) => {
+	if ( typeof s !== 'string' ) throw new TypeError( 'Input must be a string.' )
+	
+	return s.replace( /\//g, '\\' )
+}
 
 
 /**
@@ -26,7 +34,11 @@ export const forwardToBackSlashes = ( s: string ) => s.replace( /\//g, '\\' )
  * 
  * @returns	The given string with leading slash.
  */
-export const addLeadingSlash = ( s: string, slash: '/' | '\\' = '/' ) => s.replace( /^[\/|\\]?/, slash )
+export const addLeadingSlash = ( s: string, slash: '/' | '\\' = '/' ) => {
+	if ( typeof s !== 'string' ) throw new TypeError( 'Input must be a string.' )
+	
+	return s.replace( /^[\/|\\]?/, slash )
+}
 
 
 /**
@@ -36,7 +48,11 @@ export const addLeadingSlash = ( s: string, slash: '/' | '\\' = '/' ) => s.repla
  * 
  * @returns	The given string without leading slash.
  */
-export const removeLeadingSlash = ( s: string ) => s.replace( /^[\/|\\]+/, '' )
+export const removeLeadingSlash = ( s: string ) => {
+	if ( typeof s !== 'string' ) throw new TypeError( 'Input must be a string.' )
+	
+	return s.replace( /^[\/|\\]+/, '' )
+}
 
 
 /**
@@ -47,9 +63,11 @@ export const removeLeadingSlash = ( s: string ) => s.replace( /^[\/|\\]+/, '' )
  * 
  * @returns	The given string with trailing slash.
  */
-export const addTrailingSlash = ( s: string, slash: '/' | '\\' = '/' ) => (
-	s.replace( /[\/|\\]?$/, slash )
-)
+export const addTrailingSlash = ( s: string, slash: '/' | '\\' = '/' ) => {
+	if ( typeof s !== 'string' ) throw new TypeError( 'Input must be a string.' )
+
+	return s.replace( /[\/|\\]?$/, slash )
+}
 
 
 /**
@@ -58,4 +76,13 @@ export const addTrailingSlash = ( s: string, slash: '/' | '\\' = '/' ) => (
  * @param	s The string to process.
  * @returns	The given string without trailing slashes.
  */
-export const removeTrailingSlash = ( s: string ) => s.replace( /[\/\\]+$/, '' )
+export const removeTrailingSlash = ( s: string ) => {
+	if ( typeof s !== 'string' ) throw new TypeError( 'Input must be a string.' )
+
+	let end = s.length
+	while ( end > 0 && ( s[ end - 1 ] === '/' || s[ end - 1 ] === '\\' ) ) {
+		end--;
+	}
+
+	return s.slice( 0, end )
+}
