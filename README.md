@@ -2,6 +2,8 @@
 
 Version 0.1.0
 
+[![Coverage Status](https://coveralls.io/repos/github/alessiofrittoli/url-utils/badge.svg)](https://coveralls.io/github/alessiofrittoli/url-utils) [![Dependencies](https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Furl-utils)](https://libraries.io/npm/%40alessiofrittoli%2Furl-utils)
+
 ## TypeScript URL utility library
 
 ### Table of Contents
