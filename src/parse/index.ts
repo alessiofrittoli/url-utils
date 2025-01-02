@@ -1,3 +1,4 @@
+import { isAbsoluteUrl } from '@/check'
 import type { UrlObject } from 'url'
 
 /**
@@ -86,19 +87,14 @@ export const urlFromUrlObject = (
  * 
  * @returns	The URL domain name.
  */
-export const getDomain = ( url: string | URL, subdomain: boolean = true ) => {
+export const getDomain = ( url: string | URL | UrlObject, subdomain: boolean = true ) => {
+	const urlstring = urlFromUrlObject( url )
+	if ( ! isAbsoluteUrl( urlstring ) ) return ''
+	const host = new URL( urlstring ).host.replace( /www./gi, '' )
 
-	url = url.toString()
-	url = url.replace( /(https?:\/\/)?(www.)?/i, '' )
-
-	if ( ! subdomain ) {
-		url = url.split( '.' ).at( -1 )!
-	}
-	
-	if ( url.indexOf( '/' ) !== -1 ) {
-		return url.split( '/' )[ 0 ]!
-	}
-
-	return url
-
+	return (
+		subdomain
+			? host.replace( /www./g, '' )!
+			: host.replace( /www./g, '' )!.split( '.' ).at( -1 )
+	)
 }
