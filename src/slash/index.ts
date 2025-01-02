@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+
 /**
  * Convert back slashes to forward slashes.
  * 
@@ -24,7 +26,7 @@ export const forwardToBackSlashes = ( s: string ) => s.replace( /\//g, '\\' )
  * 
  * @returns	The given string with leading slash.
  */
-export const addLeadingSlash = ( s: string, slash: '/' | '\\' = '/' ) => s.replace( /^\/|\\?/, slash )
+export const addLeadingSlash = ( s: string, slash: '/' | '\\' = '/' ) => s.replace( /^[\/|\\]?/, slash )
 
 
 /**
@@ -34,7 +36,7 @@ export const addLeadingSlash = ( s: string, slash: '/' | '\\' = '/' ) => s.repla
  * 
  * @returns	The given string without leading slash.
  */
-export const removeLeadingSlash = ( s: string ) => s.replace( /^(\/|\\)+/, '' )
+export const removeLeadingSlash = ( s: string ) => s.replace( /^[\/|\\]+/, '' )
 
 
 /**
@@ -46,7 +48,7 @@ export const removeLeadingSlash = ( s: string ) => s.replace( /^(\/|\\)+/, '' )
  * @returns	The given string with trailing slash.
  */
 export const addTrailingSlash = ( s: string, slash: '/' | '\\' = '/' ) => (
-	s.replace( /(\/|\\)?$/, slash )
+	s.replace( /[\/|\\]?$/, slash )
 )
 
 
@@ -56,4 +58,4 @@ export const addTrailingSlash = ( s: string, slash: '/' | '\\' = '/' ) => (
  * @param	s The string to process.
  * @returns	The given string without trailing slashes.
  */
-export const removeTrailingSlash = ( s: string ) => s.replace( /(\/|\\)+$/, '' )
+export const removeTrailingSlash = ( s: string ) => s.replace( /[\/\\]+$/, '' )
