@@ -1,3 +1,6 @@
+import { urlFromUrlObject } from '@/parse'
+import type { UrlObject } from 'url'
+
 /**
  * Check whether the given string is an external URL or not.
  * 
@@ -6,14 +9,17 @@
  * @returns	True if is an external URL, false otherwise.
  */
 export const isExternalUrl = (
-	url			: string | URL,
-	location?	: Location | URL,
+	url			: string | URL | UrlObject,
+	location?	: string | Location | URL | UrlObject,
 ) => {
 	if ( typeof window !== 'undefined' ) {
 		location ||= window.location
 	}
 	if ( ! location ) return false
-	
+
+	url = urlFromUrlObject( url )
+	const currentLocation = new URL( urlFromUrlObject( location ) )
+
 	// eslint-disable-next-line no-useless-escape
 	const match = url.toString().match( /^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/ )
 	if ( ! match ) return false
@@ -21,15 +27,15 @@ export const isExternalUrl = (
 	if (
 		typeof match[ 1 ] === 'string' &&
 		match[ 1 ].length > 0 &&
-		match[ 1 ].toLowerCase() !== location.protocol
+		match[ 1 ].toLowerCase() !== currentLocation.protocol
 	) return true
 
 	if (
 		typeof match[ 2 ] === 'string' &&
 		match[ 2 ].length > 0 &&
 		match[ 2 ].replace(
-			new RegExp( ':(' + { 'http:': 80, 'https:': 443 }[ location.protocol ] + ')?$' ), ''
-		) !== location.host
+			new RegExp( ':(' + { 'http:': 80, 'https:': 443 }[ currentLocation.protocol ] + ')?$' ), ''
+		) !== currentLocation.host
 	) return true
 
 	return false
@@ -44,7 +50,7 @@ export const isExternalUrl = (
  * 
  * @returns	True if is an absolute URL, false otherwise.
  */
-export const isAbsoluteUrl = ( url: string | URL ) => (
+export const isAbsoluteUrl = ( url: string | URL | UrlObject ) => (
 	new RegExp( '^(?:[a-z+]+:)?//', 'i' )
-		.test( url.toString() )
+		.test( urlFromUrlObject( url ) )
 )
