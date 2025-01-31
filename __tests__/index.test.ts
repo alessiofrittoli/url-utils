@@ -3,6 +3,8 @@ import type { UrlObject } from 'url'
 
 describe( 'Url.parse()', () => {
 
+	const isClient = typeof window !== 'undefined'
+
 	it( 'returns a new URL instance from url string', () => {
 		const url		= 'http://localhost:3000/pathname/subpath?param=value'
 		const parsedURL	= Url.parse( url )
@@ -113,7 +115,7 @@ describe( 'Url.parse()', () => {
 	it( 'optionally removes URLSearchParams from a url string', () => {
 		const parsedURL = Url.parse( 'http://localhost:3000/pathname?search=param', false )
 
-		expect( parsedURL.searchParams.size ).toBe( 0 )
+		expect( parsedURL.searchParams.size ).toBe( ! isClient ? 0 : undefined )
 		expect( parsedURL.toString() ).toBe( 'http://localhost:3000/pathname' )
 	} )
 	
@@ -121,7 +123,7 @@ describe( 'Url.parse()', () => {
 	it( 'optionally removes URLSearchParams from a URL instance', () => {
 		const parsedURL = Url.parse( new URL( 'http://localhost:3000/pathname?search=param' ), false )
 
-		expect( parsedURL.searchParams.size ).toBe( 0 )
+		expect( parsedURL.searchParams.size ).toBe( ! isClient ? 0 : undefined )
 		expect( parsedURL.toString() ).toBe( 'http://localhost:3000/pathname' )
 	} )
 	
@@ -133,7 +135,7 @@ describe( 'Url.parse()', () => {
 			query	: { search: 'param' },
 		}, false )
 
-		expect( parsedURL.searchParams.size ).toBe( 0 )
+		expect( parsedURL.searchParams.size ).toBe( ! isClient ? 0 : undefined )
 		expect( parsedURL.toString() ).toBe( 'http://localhost:3000/pathname' )
 	} )
 

@@ -7,9 +7,8 @@ describe( 'isExternalUrl', () => {
 
 	const isClient		= typeof window !== 'undefined'
 	const clientSuffix	= isClient ? ' in the client' : ''
-
 	
-	it( 'checks given URL with current Location URL' + clientSuffix, () => {
+	it( 'returns false if no location has been provided', () => {
 		expect( isExternalUrl( new URL( 'https://externalurl.it' ), undefined ) )
 			.toBe( isClient )
 	} )
