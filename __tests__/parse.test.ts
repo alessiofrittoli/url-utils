@@ -1,5 +1,6 @@
 import { getDomain, slugify, urlFromUrlObject } from '@/parse'
-import { UrlObject } from 'url'
+import type { UrlObject } from 'url'
+
 
 describe( 'slugify', () => {
 

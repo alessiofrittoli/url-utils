@@ -1,5 +1,6 @@
 import { isAbsoluteUrl } from '@/check'
 import type { UrlObject } from 'url'
+import { Url, type UrlInput } from '..'
 
 /**
  * Slugify text for URL usage.
@@ -39,6 +40,8 @@ export const slugify = (
  * 
  * @param	url		The url string, UrlObject or URL instance.
  * @param	params	Whether to get URLSearchParams or not.
+ * 
+ * @deprecated Use {@link Url.parse()} instead.
  * 
  * @returns	The parsed url.
  */
@@ -87,10 +90,10 @@ export const urlFromUrlObject = (
  * 
  * @returns	The URL domain name.
  */
-export const getDomain = ( url: string | URL | UrlObject, subdomain: boolean = true ) => {
-	const urlstring = urlFromUrlObject( url )
-	if ( ! isAbsoluteUrl( urlstring ) ) return ''
-	const host = new URL( urlstring ).host.replace( /www./gi, '' )
+export const getDomain = ( url: UrlInput, subdomain: boolean = true ) => {
+	const formattedUrl = Url.format( Url.parse( url ) )
+	if ( ! isAbsoluteUrl( formattedUrl ) ) return ''
+	const host = new URL( formattedUrl ).host.replace( /www./gi, '' )
 
 	return (
 		subdomain
