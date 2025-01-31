@@ -1,5 +1,4 @@
-import { urlFromUrlObject } from '@/parse'
-import type { UrlObject } from 'url'
+import { Url, type UrlInput } from '@/index'
 
 /**
  * Check whether the given string is an external URL or not.
@@ -9,19 +8,19 @@ import type { UrlObject } from 'url'
  * @returns	True if is an external URL, false otherwise.
  */
 export const isExternalUrl = (
-	url			: string | URL | UrlObject,
-	location?	: string | Location | URL | UrlObject,
+	url			: UrlInput,
+	location?	: UrlInput,
 ) => {
 	if ( typeof window !== 'undefined' ) {
 		location ||= window.location
 	}
 	if ( ! location ) return false
 
-	url = urlFromUrlObject( url )
-	const currentLocation = new URL( urlFromUrlObject( location ) )
+	url = Url.format( Url.parse( url ) )
+	const currentLocation = Url.parse( location )
 
 	// eslint-disable-next-line no-useless-escape
-	const match = url.toString().match( /^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/ )
+	const match = url.match( /^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/ )
 	if ( ! match ) return false
 
 	if (
@@ -50,7 +49,7 @@ export const isExternalUrl = (
  * 
  * @returns	True if is an absolute URL, false otherwise.
  */
-export const isAbsoluteUrl = ( url: string | URL | UrlObject ) => (
+export const isAbsoluteUrl = ( url: UrlInput ) => (
 	new RegExp( '^(?:[a-z+]+:)?//', 'i' )
-		.test( urlFromUrlObject( url ) )
+		.test( Url.format( Url.parse( url ) ) )
 )
