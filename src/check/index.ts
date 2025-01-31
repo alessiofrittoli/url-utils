@@ -20,8 +20,7 @@ export const isExternalUrl = (
 	const currentLocation = Url.parse( location )
 
 	// eslint-disable-next-line no-useless-escape
-	const match = url.match( /^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/ )
-	if ( ! match ) return false
+	const match = url.match( /^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/ )!
 
 	if (
 		typeof match[ 1 ] === 'string' &&
