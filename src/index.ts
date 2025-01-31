@@ -16,7 +16,7 @@ export class Url
 	 * 
 	 * If no `host` has been provided, fallbacks to `unresolved`.
 	 * 
-	 * @param	url		The URL string, URL instance or UrlObject.
+	 * @param	url		The URL `string`, `URL` instance, `Location` instance or `UrlObject`.
 	 * @param	params	Whether to keep search params or not. Default: `true`.
 	 * 
 	 * @returns	A new instance of URL.
@@ -65,8 +65,9 @@ export class Url
 	 * 
 	 * `unresolved` hostname is automatically removed from output, returning a relative URL string.
 	 * 
-	 * @param url The URL string, URL instance or UrlObject to format.
-	 * @param params Whether to keep search params or not. Default: `true`.
+	 * @param	url		The URL `string`, `URL` instance, `Location` instance or `UrlObject` to format.
+	 * @param	params	Whether to keep search params or not. Default: `true`.
+	 * 
 	 * @returns The URL string.
 	 */
 	static format( url: UrlInput, params: boolean = true )

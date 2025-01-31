@@ -4,7 +4,7 @@ import { Url, type UrlInput } from '@/index'
  * Check whether the given string is an external URL or not.
  * 
  * @param	url			The URL to check.
- * @param	localtion	( Optioanl ) The current `Location`. Default: `window.location` if available.
+ * @param	location	( Optioanl ) The current url location. Default: `window.location` if available.
  * @returns	True if is an external URL, false otherwise.
  */
 export const isExternalUrl = (
@@ -45,7 +45,7 @@ export const isExternalUrl = (
  * Check if the given URL is an absolute URL.
  * 
  * @see		[StackOverflow Thread](https://stackoverflow.com/questions/10687099/how-to-test-if-a-url-string-is-absolute-or-relative#answer-19709846)
- * @param	url The URL string to check.
+ * @param	url The URL to check.
  * 
  * @returns	True if is an absolute URL, false otherwise.
  */
