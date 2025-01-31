@@ -3,7 +3,7 @@ import type { UrlObject } from 'url'
 /**
  * The Url parse/format accepted input.
  */
-export type UrlInput = string | URL | UrlObject
+export type UrlInput = string | URL | Location | UrlObject
 
 
 /**
@@ -23,11 +23,12 @@ export class Url
 	 */
 	static parse( url: UrlInput, params: boolean = true )
 	{
-		if ( url instanceof URL ) {
-			const newURL = new URL( url )
+		if ( url instanceof URL || ( typeof Location !== 'undefined' && url instanceof Location ) ) {
+			const newURL = new URL( url.toString() )
 			if ( ! params ) newURL.search = ''
 			return newURL
 		}
+		
 		if ( typeof url === 'string' ) {
 			const newURL = new URL( url, 'http://unresolved' )
 			if ( ! params ) newURL.search = ''
@@ -40,15 +41,16 @@ export class Url
 		const host		= url.host || [ url.hostname, url.port ].filter( Boolean ).join( ':' ) || 'unresolved'
 		const pathname	= url.pathname || '/'
 		const newURL	= new URL( pathname, [ protocol, host ].join( '//' ) )
+		const queryInput= url.search || ( 'query' in url && url.query as Record<string, string> | undefined ) || ''
 		newURL.search	= (
 			params
-				? new URLSearchParams( url.search || url.query as Record<string, string> | undefined || '' ).toString()
+				? new URLSearchParams( queryInput ).toString()
 				: ''
 		)
 	
 		if ( url.hash ) newURL.hash = url.hash.replace( /#/gi, '' )
 		
-		if ( url.auth ) {
+		if ( 'auth' in url && url.auth ) {
 			const [ username, password ] = url.auth.split( ':' )
 			if ( username ) newURL.username = username
 			if ( password ) newURL.password = password
