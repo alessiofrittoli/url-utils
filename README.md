@@ -10,12 +10,13 @@ Version 1.0.0
 
 - [Getting started](#getting-started)
 - [API Reference](#api-reference)
-	- [Check functions](#check-functions)
-	- [Parse functions](#parse-functions)
-	- [Slash functions](#slash-functions)
+  - [Url utility Class](#url-utility-class)
+  - [Check functions](#check-functions)
+  - [Parse functions](#parse-functions)
+  - [Slash functions](#slash-functions)
 - [Development](#development)
-	- [ESLint](#eslint)
-	- [Jest](#jest)
+  - [ESLint](#eslint)
+  - [Jest](#jest)
 - [Contributing](#contributing)
 - [Security](#security)
 - [Credits](#made-with-)
@@ -40,13 +41,90 @@ pnpm i @alessiofrittoli/url-utils
 
 ### API Reference
 
+#### Url utility Class
+
+The `Url` utility class provides methods for parsing and formatting URLs. It supports multiple input types, ensuring flexibility in handling URL manipulation.
+
+##### Type Definitions
+
+###### `UrlInput`
+
+The Url parse/format accepted input.
+
+| Type        | Description                                                            |
+|-------------|------------------------------------------------------------------------|
+| `string`    | A URL string.                                                          |
+| `URL`       | An instance of the `URL` class.                                        |
+| `Location`  | An instance of the `Location` class.                                   |
+| `UrlObject` | An object containing URL properties, similar to `node:url` structures. |
+
+---
+
+##### Methods
+
+###### `Url.parse()`
+
+Parses a given URL input into a `URL` instance. If the `host` is not provided, it defaults to `unresolved`.
+
+<details>
+
+<summary>Parameters</summary>
+
+| Parameter | Type       | Default | Description |
+|-----------|------------|---------|-------------|
+| `url`     | `UrlInput` | -       | The URL string, `URL` instance, `Location` instance or UrlObject to parse. |
+| `params`  | `boolean`  | `true`  | Whether to keep search parameters or not. |
+
+</details>
+
+---
+
+<details>
+
+<summary>Returns</summary>
+
+Type: `URL`
+
+A new instance of `URL`.
+
+</details>
+
+---
+
+###### `Url.format()`
+
+Formats a given URL input into a URL string. If the `hostname` is `unresolved`, it returns a relative URL string.
+
+<details>
+
+<summary>Parameters</summary>
+
+| Parameter | Type       | Default | Description |
+|-----------|------------|---------|-------------|
+| `url`     | `UrlInput` | -       | The URL string, `URL` instance, `Location` instance or UrlObject to format. |
+| `params`  | `boolean`  | `true`  | Whether to keep search parameters or not. |
+
+</details>
+
+---
+
+<details>
+
+<summary>Returns</summary>
+
+Type: `string`
+
+The formatted URL string.
+
+</details>
+
+---
+
 #### Check functions
 
 ##### Importing functions
 
 ```ts
-import { ... } from '@alessiofrittoli/url-utils'
-// or
 import { ... } from '@alessiofrittoli/url-utils/check'
 ```
 
@@ -61,8 +139,8 @@ Determines if a given URL is external compared to a provided or default location
 
 | Parameter  | Type            | Default | Description |
 |------------|-----------------|---------|-------------|
-| `url`      | `string \| URL \| UrlObject` | - | A `string` or `URL` object representing the URL to be checked. |
-| `location` | `string \| Location \| URL \| UrlObject` | `window.location` | A `string`, `Location`, `URL` or `UrlObject` representing the current location. Defaults to `window.location` if available in the browser environment. |
+| `url`      | `UrlInput` | - | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the URL to be checked. |
+| `location` | `UrlInput` | `window.location` | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the current location. Defaults to `window.location` if available in the browser environment. |
 
 </details>
 
@@ -106,7 +184,7 @@ Checks if a given URL is absolute.
 
 | Parameter  | Type                         | Description |
 |------------|------------------------------|-------------|
-| `url`      | `string \| URL \| UrlObject` | A `string`, `URL` or `UrlObject` representing the URL to be checked. |
+| `url`      | `UrlInput` | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the URL to be checked. |
 
 </details>
 
@@ -146,8 +224,6 @@ console.log( result2 ) // false
 ##### Importing functions
 
 ```ts
-import { ... } from '@alessiofrittoli/url-utils'
-// or
 import { ... } from '@alessiofrittoli/url-utils/parse'
 ```
 
@@ -196,7 +272,7 @@ console.log( slug ) // Outputs: 'hello-world-lets-code'
 ```ts
 input.addEventListener( 'input', event => {
     const input = event.target
-	// setting `trim` to false will allow the user to type whitespace characters that will be converted to hyphen characters, improving typing experience.
+    // setting `trim` to false will allow the user to type whitespace characters that will be converted to hyphen characters, improving typing experience.
     input.value = slugify( input.value, false )
 } )
 ```
@@ -239,14 +315,14 @@ A `string` representing the normalized URL.
 
 ```ts
 const url: UrlObject = {
-	protocol: 'http',
-	hostname: 'localhost',
-	port	: 3000,
-	pathname: 'pathname',
-	hash	: 'someDomElId',
-	query	: {
-		param: 'value',
-	}
+    protocol: 'http',
+    hostname: 'localhost',
+    port	: 3000,
+    pathname: 'pathname',
+    hash	: 'someDomElId',
+    query	: {
+        param: 'value',
+    }
 }
 
 console.log( urlFromUrlObject( url ) )
@@ -257,14 +333,14 @@ console.log( urlFromUrlObject( url ) )
 
 ```ts
 const url: UrlObject = {
-	protocol: 'http',
-	hostname: 'localhost',
-	port	: 3000,
-	pathname: 'pathname',
-	hash	: 'someDomElId',
-	query	: {
-		param: 'value',
-	}
+    protocol: 'http',
+    hostname: 'localhost',
+    port	: 3000,
+    pathname: 'pathname',
+    hash	: 'someDomElId',
+    query	: {
+        param: 'value',
+    }
 }
 
 console.log( urlFromUrlObject( url, false ) )
@@ -282,10 +358,10 @@ Extracts the domain name from a given URL.
 <details>
 <summary>Parameters</summary>
 
-| Parameter   | Type                         | Default | Description |
-|-------------|------------------------------|---------|-------------|
-| `url`       | `string \| URL \| UrlObject` | -       | A `string`, `URL`, or `UrlObject` representing the URL. |
-| `subdomain` | `boolean`                    | `true`  | A `boolean` indicating whether to include subdomains in the result. |
+| Parameter   | Type       | Default | Description |
+|-------------|------------|---------|-------------|
+| `url`       | `UrlInput` | - | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the URL. |
+| `subdomain` | `boolean`  | `true`  | A `boolean` indicating whether to include subdomains in the result. |
 
 </details>
 
@@ -328,8 +404,6 @@ console.log( domain ) // 'example.com'
 ##### Importing functions
 
 ```ts
-import { ... } from '@alessiofrittoli/url-utils'
-// or
 import { ... } from '@alessiofrittoli/url-utils/slash'
 ```
 
@@ -653,30 +727,30 @@ If you believe you have found a security vulnerability, we encourage you to **_r
 ### Made with ☕
 
 <table style='display:flex;gap:20px;'>
-	<tbody>
-		<tr>
-			<td>
-				<img src='https://avatars.githubusercontent.com/u/35973186' style='width:60px;border-radius:50%;object-fit:contain;'>
-			</td>
-			<td>
-				<table style='display:flex;gap:2px;flex-direction:column;'>
-					<tbody>
-						<tr>
-							<td>
-								<a href='https://github.com/alessiofrittoli' target='_blank' rel='noopener'>Alessio Frittoli</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<small>
-									<a href='https://alessiofrittoli.it' target='_blank' rel='noopener'>https://alessiofrittoli.it</a> |
-									<a href='mailto:info@alessiofrittoli.it' target='_blank' rel='noopener'>info@alessiofrittoli.it</a>
-								</small>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</td>
-		</tr>
-	</tbody>
+  <tbody>
+    <tr>
+      <td>
+        <img src='https://avatars.githubusercontent.com/u/35973186' style='width:60px;border-radius:50%;object-fit:contain;'>
+      </td>
+      <td>
+        <table style='display:flex;gap:2px;flex-direction:column;'>
+          <tbody>
+            <tr>
+              <td>
+                <a href='https://github.com/alessiofrittoli' target='_blank' rel='noopener'>Alessio Frittoli</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <small>
+                  <a href='https://alessiofrittoli.it' target='_blank' rel='noopener'>https://alessiofrittoli.it</a> |
+                  <a href='mailto:info@alessiofrittoli.it' target='_blank' rel='noopener'>info@alessiofrittoli.it</a>
+                </small>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
 </table>
