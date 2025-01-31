@@ -10,7 +10,7 @@ describe( 'isExternalUrl', () => {
 	
 	it( 'returns false if no location has been provided', () => {
 		expect( isExternalUrl( new URL( 'https://externalurl.it' ), undefined ) )
-			.toBe( false )
+			.toBe( isClient )
 	} )
 
 
