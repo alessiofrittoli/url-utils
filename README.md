@@ -1,8 +1,14 @@
 # URL utils 🔗
 
-Version 1.0.0
+[![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
 
-[![Coverage Status](https://coveralls.io/repos/github/alessiofrittoli/url-utils/badge.svg)](https://coveralls.io/github/alessiofrittoli/url-utils) [![Dependencies](https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Furl-utils)](https://libraries.io/npm/%40alessiofrittoli%2Furl-utils)
+[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Furl-utils
+[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Furl-utils
+[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/url-utils/badge.svg
+[coverage-url]: https://coveralls.io/github/alessiofrittoli/url-utils
+[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Furl-utils.svg
+[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Furl-utils
+[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Furl-utils
 
 ## TypeScript URL utility library
 
@@ -284,6 +290,8 @@ input.addEventListener( 'input', event => {
 ##### `urlFromUrlObject`
 
 Parses a `UrlObject`, `string`, or `URL` into a normalized URL string.
+
+⚠️ Deprecated: use [`Url.parse()`](#urlparse) instead.
 
 <details>
 <summary>Parameters</summary>
