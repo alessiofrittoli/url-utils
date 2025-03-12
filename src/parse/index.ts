@@ -1,6 +1,5 @@
 import { isAbsoluteUrl } from '@/check'
-import type { UrlObject } from 'url'
-import { Url, type UrlInput } from '..'
+import { Url, type UrlInput } from '@/index'
 
 /**
  * Slugify text for URL usage.
@@ -32,53 +31,6 @@ export const slugify = (
 			// eslint-disable-next-line no-useless-escape
 			.replace( /\-\-+/g, '-' )	// Replace multiple - with single -
 	)
-}
-
-
-/**
- * Get parsed url from UrlObject.
- * 
- * @param	url		The url string, UrlObject or URL instance.
- * @param	params	Whether to get URLSearchParams or not.
- * 
- * @deprecated Use {@link Url.parse()} instead.
- * 
- * @returns	The parsed url.
- */
-export const urlFromUrlObject = (
-	url		: string | URL | UrlObject,
-	params	: boolean = true
-): string => {
-	
-	if ( url instanceof URL || typeof url === 'string' ) {
-		const _url = new URL( url, 'https://resolve' )
-
-		if ( ! params ) _url.search = ''
-		if ( _url.hostname === 'resolve' ) {
-			return (
-				_url
-					.toString()
-					.replace( _url.origin, '' )
-			) || '/'
-		}
-		return _url.toString()
-	}
-
-	const _url = new URL( 'https://resolve' )
-	
-	if ( url.protocol ) _url.protocol = url.protocol
-	if ( url.host ) _url.host = url.host
-	if ( url.hostname ) _url.hostname = url.hostname
-	if ( url.pathname ) _url.pathname = url.pathname
-	if ( url.hash ) _url.hash = url.hash
-	if ( url.href ) _url.href = url.href
-	if ( url.port ) _url.port = url.port.toString()
-
-	_url.search = (
-		url.search || ( url.query ? new URLSearchParams( url.query as Record<string, string> ) : '' ).toString() || ''
-	)
-
-	return urlFromUrlObject( _url, params )
 }
 
 
