@@ -1,5 +1,4 @@
-import { getDomain, slugify, urlFromUrlObject } from '@/parse'
-import type { UrlObject } from 'url'
+import { getDomain, slugify } from '@/parse'
 
 
 describe( 'slugify', () => {
@@ -33,101 +32,6 @@ describe( 'slugify', () => {
 			slugify( ' Some string ', false )
 		).toBe( '-some-string-' )
 	} )
-} )
-
-
-describe( 'urlFromUrlObject', () => {
-
-	it( 'returns a URL string from URL string', () => {
-		const url = 'http://localhost:3000/pathname/subpath?param=value'
-
-		expect( urlFromUrlObject( url ) )
-			.toBe( url )
-		
-	} )
-
-
-	it( 'returns a URL string from relative URL string', () => {
-		const url = '/pathname/subpath?param=value'
-
-		expect( urlFromUrlObject( url ) )
-			.toBe( url )
-		
-	} )
-
-
-	it( 'removes URLSearchParams from URL string', () => {
-		const pathname		= '/pathname/subpath'
-		const baseUrl		= 'http://localhost:3000'
-		const relativeUrl	= pathname + '?param=value'
-		const absoluteUrl	= baseUrl + pathname + '?param=value'
-
-		expect( urlFromUrlObject( relativeUrl, false ) )
-			.toBe( pathname )
-
-		expect( urlFromUrlObject( absoluteUrl, false ) )
-			.toBe( baseUrl + pathname )
-		
-	} )
-
-
-	it( 'returns a URL string from URL instance', () => {
-		const url = new URL( 'pathname/subpath', 'http://localhost:3000/' )
-		url.searchParams.append( 'param', 'value' )
-
-		expect( urlFromUrlObject( url ) )
-			.toBe( url.toString() )
-	} )
-
-
-	it( 'removes URLSearchParams from URL instance', () => {
-		const url = new URL( 'pathname/subpath', 'http://localhost:3000/' )
-		url.searchParams.append( 'param', 'value' )
-
-		const urlCompare = new URL( url )
-		urlCompare.search = new URLSearchParams().toString()
-
-		expect( urlFromUrlObject( url, false ) )
-			.toBe( urlCompare.toString() )
-	} )
-
-
-	it( 'returns a URL string from UrlObject', () => {
-		const url: UrlObject = {
-			protocol: 'http',
-			host	: 'localhost:3000',
-			hostname: 'localhost',
-			port	: 3000,
-			pathname: 'pathname/subpath',
-			href	: 'http://localhost:3000/pathname/subpath?param=value#someDomElId',
-			hash	: 'someDomElId',
-			query	: {
-				param: 'value',
-			}
-		}
-
-		expect( urlFromUrlObject( url ) )
-			.toBe( 'http://localhost:3000/pathname/subpath?param=value#someDomElId' )
-		
-	} )
-
-
-	it( 'removes URLSearchParams from from UrlObject', () => {
-		const url: UrlObject = {
-			protocol: 'http',
-			hostname: 'localhost',
-			port	: 3000,
-			pathname: 'pathname/subpath',
-			query	: {
-				param: 'value',
-			}
-		}
-
-		expect( urlFromUrlObject( url, false ) )
-			.toBe( 'http://localhost:3000/pathname/subpath' )
-		
-	} )	
-
 } )
 
 
