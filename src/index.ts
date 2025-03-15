@@ -1,4 +1,5 @@
 import type { UrlObject } from 'url'
+import { removeTrailingSlash } from './slash'
 
 /**
  * The Url parse/format accepted input.
@@ -73,11 +74,16 @@ export class Url
 	static format( url: UrlInput, params: boolean = true )
 	{
 		const parsedURL = Url.parse( url, params )
-
-		return (
+		const result = (
 			parsedURL.hostname === 'unresolved'
 				? parsedURL.toString().replace( parsedURL.origin, '' )
 				: parsedURL.toString()
+		)
+
+		return (
+			result === '/'
+				? result
+				: removeTrailingSlash( result )
 		)
 	}
 }
