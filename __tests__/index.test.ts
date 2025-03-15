@@ -178,4 +178,20 @@ describe( 'Url.format()', () => {
 		} ) ).toBe( '/pathname?search=param#hashstring' )
 	} )
 
+
+	it( 'removes trailing slash', () => {
+		expect( Url.format( Url.parse( '/' ) ) )
+			.toBe( '/' )
+
+		expect( Url.format( new URL( '/', 'http://localhost:3000' ) ) )
+			.toBe( 'http://localhost:3000' )
+
+		expect( Url.format( new URL( '/pathname', 'http://localhost:3000' ) ) )
+			.toBe( 'http://localhost:3000/pathname' )
+
+		expect( Url.format( new URL( '/pathname/', 'http://localhost:3000' ) ) )
+			.toBe( 'http://localhost:3000/pathname' )
+
+	} )
+
 } )
