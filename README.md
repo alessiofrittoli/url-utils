@@ -1,14 +1,21 @@
 # URL utils 🔗
 
-[![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
+[![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![Socket Status][socket-badge]][socket-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
+
+[![GitHub Sponsor][sponsor-badge]][sponsor-url]
 
 [version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Furl-utils
 [npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Furl-utils
 [coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/url-utils/badge.svg
 [coverage-url]: https://coveralls.io/github/alessiofrittoli/url-utils
+[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/url-utils
+[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/url-utils/overview
 [downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Furl-utils.svg
 [deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Furl-utils
 [deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Furl-utils
+
+[sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
+[sponsor-url]: https://github.com/sponsors/alessiofrittoli
 
 ## TypeScript URL utility library
 
@@ -21,6 +28,8 @@
   - [Parse functions](#parse-functions)
   - [Slash functions](#slash-functions)
 - [Development](#development)
+  - [Install depenendencies](#install-depenendencies)
+  - [Build the source code](#build-the-source-code)
   - [ESLint](#eslint)
   - [Jest](#jest)
 - [Contributing](#contributing)
@@ -587,9 +596,9 @@ or using `pnpm`
 pnpm i
 ```
 
-#### Build your source code
+#### Build the source code
 
-Run the following command to build code for distribution.
+Run the following command to test and build code for distribution.
 
 ```bash
 pnpm build
@@ -623,18 +632,11 @@ pnpm test:ci:jsdom
 
 You can eventually run specific suits like so:
 
+- See [`package.json`](./package.json) file scripts for more info.
+
 ```bash
 pnpm test:jest
 pnpm test:jest:jsdom
-
-test:check
-test:check:jsdom
-
-test:parse
-test:parse:jsdom
-
-test:slash
-test:slash:jsdom
 ```
 
 Run tests with coverage.
@@ -651,8 +653,13 @@ test:coverage:serve
 
 ### Contributing
 
-Contributions are truly welcome!\
+Contributions are truly welcome!
+
 Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
+
+Help keep this project up to date with [GitHub Sponsor][sponsor-url].
+
+[![GitHub Sponsor][sponsor-badge]][sponsor-url]
 
 ---
 
@@ -666,24 +673,24 @@ If you believe you have found a security vulnerability, we encourage you to **_r
   <tbody>
     <tr>
       <td>
-        <img src='https://avatars.githubusercontent.com/u/35973186' style='width:60px;border-radius:50%;object-fit:contain;'>
+        <img alt="avatar" src='https://avatars.githubusercontent.com/u/35973186' style='width:60px;border-radius:50%;object-fit:contain;'>
       </td>
       <td>
         <table style='display:flex;gap:2px;flex-direction:column;'>
           <tbody>
-            <tr>
-              <td>
-                <a href='https://github.com/alessiofrittoli' target='_blank' rel='noopener'>Alessio Frittoli</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <small>
-                  <a href='https://alessiofrittoli.it' target='_blank' rel='noopener'>https://alessiofrittoli.it</a> |
-                  <a href='mailto:info@alessiofrittoli.it' target='_blank' rel='noopener'>info@alessiofrittoli.it</a>
-                </small>
-              </td>
-            </tr>
+              <tr>
+                <td>
+                  <a href='https://github.com/alessiofrittoli' target='_blank' rel='noopener'>Alessio Frittoli</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <small>
+                    <a href='https://alessiofrittoli.it' target='_blank' rel='noopener'>https://alessiofrittoli.it</a> |
+                    <a href='mailto:info@alessiofrittoli.it' target='_blank' rel='noopener'>info@alessiofrittoli.it</a>
+                  </small>
+                </td>
+              </tr>
           </tbody>
         </table>
       </td>
