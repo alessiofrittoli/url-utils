@@ -1,5 +1,7 @@
-import type { UrlObject } from 'url'
+import type { UrlObject as NodeUrlObject } from 'url'
 import { removeTrailingSlash } from './slash'
+
+export type UrlObject = NodeUrlObject
 
 /**
  * The Url parse/format accepted input.
