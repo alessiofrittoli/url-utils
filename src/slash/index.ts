@@ -9,26 +9,26 @@ import {
 /**
  * Convert back slashes to forward slashes.
  * 
- * @param	s The string to process. 
+ * @param	input The string to process. 
  * @returns	The processed given string.
  */
-export const backToForwardSlashes = ( s: string ) => {
-	if ( typeof s !== 'string' ) throw new TypeError( 'Input must be a string.' )
+export const backToForwardSlashes = ( input: string ) => {
+	if ( typeof input !== 'string' ) throw new TypeError( 'Input must be a string.' )
 	
-	return s.replace( /\\/g, '/' )
+	return input.replace( /\\/g, '/' )
 }
 
 
 /**
  * Convert forward slashes to back slashes.
  * 
- * @param	s The string to process. 
+ * @param	input The string to process. 
  * @returns	The processed given string.
  */
-export const forwardToBackSlashes = ( s: string ) => {
-	if ( typeof s !== 'string' ) throw new TypeError( 'Input must be a string.' )
+export const forwardToBackSlashes = ( input: string ) => {
+	if ( typeof input !== 'string' ) throw new TypeError( 'Input must be a string.' )
 	
-	return s.replace( /\//g, '\\' )
+	return input.replace( /\//g, '\\' )
 }
 
 

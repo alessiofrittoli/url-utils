@@ -363,7 +363,7 @@ Converts all backslashes (`\`) in a string to forward slashes (`/`).
 
 | Parameter | Type     | Description            |
 |-----------|----------|------------------------|
-| `s`       | `string` | A `string` to process. |
+| `input`   | `string` | A `string` to process. |
 
 </details>
 
@@ -400,7 +400,7 @@ Converts all forward slashes (`/`) in a string to backslashes (`\`).
 
 | Parameter | Type     | Description            |
 |-----------|----------|------------------------|
-| `s`       | `string` | A `string` to process. |
+| `input`   | `string` | A `string` to process. |
 
 </details>
 
@@ -437,7 +437,7 @@ Adds a leading slash (`/` or `\`) to a `string` if it doesn’t already have one
 
 | Parameter | Type     | Default | Description                            |
 |-----------|----------|---------|----------------------------------------|
-| `s`       | `string` | -       | A `string` to process.                 |
+| `input`   | `string` | -       | A `string` to process.                 |
 | `slash`   | `/ \| \` | `/`     | The type of slash to add (`/` or `\`). |
 
 </details>
@@ -476,7 +476,7 @@ Removes any leading slashes (`/` or `\`) from a string.
 
 | Parameter | Type     | Description            |
 |-----------|----------|------------------------|
-| `s`       | `string` | A `string` to process. |
+| `input`   | `string` | A `string` to process. |
 
 </details>
 
@@ -514,7 +514,7 @@ Adds a trailing slash (`/` or `\`) to a `string` if it doesn’t already have on
 
 | Parameter | Type     | Default | Description                            |
 |-----------|----------|---------|----------------------------------------|
-| `s`       | `string` | -       | A `string` to process.                 |
+| `input`   | `string` | -       | A `string` to process.                 |
 | `slash`   | `/ \| \` | `/`     | The type of slash to add (`/` or `\`). |
 
 </details>
@@ -553,7 +553,7 @@ Removes any trailing slashes (`/` or `\`) from a string.
 
 | Parameter | Type     | Description            |
 |-----------|----------|------------------------|
-| `s`       | `string` | A `string` to process. |
+| `input`   | `string` | A `string` to process. |
 
 </details>
 
