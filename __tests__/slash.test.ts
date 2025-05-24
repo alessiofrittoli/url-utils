@@ -2,6 +2,7 @@ import { backToForwardSlashes, forwardToBackSlashes } from '@/slash'
 import { addLeadingSlash, removeLeadingSlash } from '@/slash'
 import { addTrailingSlash, removeTrailingSlash } from '@/slash'
 
+
 describe( 'backToForwardSlashes', () => {
 	it( 'converts back slashes to forward slashes', () => {
 		expect( backToForwardSlashes( '\\Some\\Path\\To\\filename.ts' ) )

@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@alessiofrittoli/web-utils':
+        specifier: ^1.12.0
+        version: 1.12.0
     devDependencies:
       '@alessiofrittoli/node-scripts':
         specifier: ^2.5.0
@@ -62,8 +66,26 @@ importers:
 
 packages:
 
+  '@alessiofrittoli/chain-functions@2.3.0':
+    resolution: {integrity: sha512-kbOhe6q9jlNLpe93KDSFxh0atsw3fa9Hi6VlA2OnzA28Te6iBw7ZkwFT5FTwBx2vtlBHY9fa8t5UtTMkBR8Flg==}
+
+  '@alessiofrittoli/date-utils@3.2.0':
+    resolution: {integrity: sha512-ZF12qeAtxG6akKZjFT3tVIKZOuBO4XRaYYWhibL7IDSotTgM0KlfPUs8ROk1QdiStknfaQCptv7zmGpJFPFvZQ==}
+
+  '@alessiofrittoli/math-utils@1.13.0':
+    resolution: {integrity: sha512-3sSEZJWdT/BpjFx9YEL2f/bj+Hy0gv5Y7E0KNAGVvsXgwCehkuswb8FAifMo8mMuOH7MQLfIqfFNnTReG8NZOw==}
+
   '@alessiofrittoli/node-scripts@2.5.0':
     resolution: {integrity: sha512-K6o0ZJgWb8HAbiBU7ajdlNY8UsrAlcLHO2WAx9pPoxjLKC/QR/PnNE+zLgc+z1q4TefS2UsS1VsUAUjQI/Ro4g==}
+
+  '@alessiofrittoli/type-utils@1.8.0':
+    resolution: {integrity: sha512-/lRf++D3VclldSv4AuGqlX9M1Ir7WAWJHqojVHwwjIZWwwZ2ZXpN1xtzv4f7CQdXWKgl/SMUS6aH8N5Ss5pvqQ==}
+
+  '@alessiofrittoli/url-utils@3.4.0':
+    resolution: {integrity: sha512-fBtD+QwSI2ZisPTCMxWL6iRN2bftOdpwTaDABBqqdrk9NMmAqF3WIe92oTm61f80dcdg+in8l0THJuRLeCMv4A==}
+
+  '@alessiofrittoli/web-utils@1.12.0':
+    resolution: {integrity: sha512-g5Yb69o6LTA12NjlTajx5p0ThrAbKIKLmo2O3tYfFK/u7aLV+M4A8qUBLejWhGhfp4mM2xRlS+3AnzjoakpZVQ==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -2444,7 +2466,32 @@ packages:
 
 snapshots:
 
+  '@alessiofrittoli/chain-functions@2.3.0': {}
+
+  '@alessiofrittoli/date-utils@3.2.0':
+    dependencies:
+      '@alessiofrittoli/math-utils': 1.13.0
+      '@alessiofrittoli/type-utils': 1.8.0
+
+  '@alessiofrittoli/math-utils@1.13.0':
+    dependencies:
+      '@alessiofrittoli/web-utils': 1.12.0
+
   '@alessiofrittoli/node-scripts@2.5.0': {}
+
+  '@alessiofrittoli/type-utils@1.8.0':
+    dependencies:
+      '@alessiofrittoli/chain-functions': 2.3.0
+      '@alessiofrittoli/node-scripts': 2.5.0
+
+  '@alessiofrittoli/url-utils@3.4.0': {}
+
+  '@alessiofrittoli/web-utils@1.12.0':
+    dependencies:
+      '@alessiofrittoli/date-utils': 3.2.0
+      '@alessiofrittoli/math-utils': 1.13.0
+      '@alessiofrittoli/type-utils': 1.8.0
+      '@alessiofrittoli/url-utils': 3.4.0
 
   '@ampproject/remapping@2.3.0':
     dependencies:
