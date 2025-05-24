@@ -1,5 +1,5 @@
-import { Url } from '@/index'
-import type { UrlObject } from 'url'
+import { Url, type UrlObject } from '@/index'
+
 
 describe( 'Url.parse()', () => {
 
@@ -28,7 +28,7 @@ describe( 'Url.parse()', () => {
 
 	it( 'returns a new URL instance from UrlObject', () => {
 		const url: UrlObject = {
-			protocol	: 'http:',
+			protocol	: 'http',
 			host		: 'localhost:3000',
 			pathname	: '/pathname',
 		}
@@ -161,7 +161,7 @@ describe( 'Url.format()', () => {
 	it( 'formats the given UrlObject', () => {
 		expect( Url.format( {
 			auth	: 'username:password',
-			protocol: 'http:',
+			protocol: 'http',
 			host	: 'localhost:3000',
 			pathname: '/pathname',
 			query	: { search: 'param' },

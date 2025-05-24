@@ -1,5 +1,7 @@
 import type { UrlObject as NodeUrlObject } from 'url'
+import { addTrailingCharacter } from '@alessiofrittoli/web-utils'
 import { removeTrailingSlash } from './slash'
+
 
 export type UrlObject = NodeUrlObject
 
@@ -40,7 +42,7 @@ export class Url
 	
 		if ( url.href ) return new URL( url.href )
 	
-		const protocol	= url.protocol || 'http:'
+		const protocol	= addTrailingCharacter( url.protocol || 'http', ':' )
 		const host		= url.host || [ url.hostname, url.port ].filter( Boolean ).join( ':' ) || 'unresolved'
 		const pathname	= url.pathname || '/'
 		const newURL	= new URL( pathname, [ protocol, host ].join( '//' ) )
