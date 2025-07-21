@@ -145,6 +145,7 @@ describe( 'Url.parse()', () => {
 describe( 'Url.format()', () => {
 
 	const urlString = 'http://username:password@localhost:3000/pathname?search=param#hashstring'
+	const urlString2 = 'http://localhost:3000/pathname?search=param#hashstring'
 	
 	it( 'formats the given url string', () => {
 		expect( Url.format( urlString ) )
@@ -167,6 +168,15 @@ describe( 'Url.format()', () => {
 			query	: { search: 'param' },
 			hash	: 'hashstring',
 		} ) ).toBe( urlString )
+		
+		expect( Url.format( {
+			auth	: ':',
+			protocol: 'http',
+			host	: 'localhost:3000',
+			pathname: '/pathname',
+			query	: { search: 'param' },
+			hash	: 'hashstring',
+		} ) ).toBe( urlString2 )
 	} )
 
 
