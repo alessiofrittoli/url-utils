@@ -22,9 +22,11 @@
 ### Table of Contents
 
 - [Getting started](#getting-started)
+- [What's Changed](#whats-changed)
 - [API Reference](#api-reference)
   - [Url utility Class](#url-utility-class)
   - [Check functions](#check-functions)
+  - [Various functions](#various-functions)
   - [Parse functions](#parse-functions)
   - [Slash functions](#slash-functions)
 - [Development](#development)
@@ -51,6 +53,14 @@ or using `pnpm`
 ```bash
 pnpm i @alessiofrittoli/url-utils
 ```
+
+---
+
+### What's Changed
+
+#### Updates in the latest release 🎉
+
+- Add [`getCurrentLocationURL`](#getcurrentlocationurl) utility function.
 
 ---
 
@@ -228,6 +238,44 @@ console.log( result1 ) // true
 // Relative URL check
 const result2 = isAbsoluteUrl( '/about' )
 console.log( result2 ) // false
+```
+
+</details>
+
+---
+
+#### Various functions
+
+##### Importing functions
+
+```ts
+import { ... } from '@alessiofrittoli/url-utils/lib'
+```
+
+---
+
+##### `getCurrentLocationURL`
+
+Get current Window Location URL.
+
+<details>
+
+<summary style="cursor:pointer">Returns</summary>
+
+Type: `URL | null`
+
+The current Window Location URL, `null` if Window object is not defined.
+
+</details>
+
+---
+
+<details>
+
+<summary style="cursor:pointer">Usage</summary>
+
+```ts
+const currentPathname = getCurrentLocationURL()?.pathname
 ```
 
 </details>
