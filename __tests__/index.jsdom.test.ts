@@ -3,7 +3,7 @@
  * @jest-environment-options { "url": "http://localhost:3000/pathname" }
  */
 
-import { Url } from '@/index'
+import { Url } from '@/Url'
 
 describe( 'Url.parse()', () => {
 	it( 'returns a new URL instance from a Location instance', () => {
