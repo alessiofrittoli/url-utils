@@ -13,7 +13,6 @@
 [downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Furl-utils.svg
 [deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Furl-utils
 [deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Furl-utils
-
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
 
@@ -60,7 +59,7 @@ pnpm i @alessiofrittoli/url-utils
 
 #### Updates in the latest release 🎉
 
-- Add [`getCurrentLocationURL`](#getcurrentlocationurl) utility function.
+- Removed subpath exports delivering smaller package size
 
 ---
 
@@ -77,7 +76,7 @@ The `Url` utility class provides methods for parsing and formatting URLs. It sup
 The Url parse/format accepted input.
 
 | Type        | Description                                                            |
-|-------------|------------------------------------------------------------------------|
+| ----------- | ---------------------------------------------------------------------- |
 | `string`    | A URL string.                                                          |
 | `URL`       | An instance of the `URL` class.                                        |
 | `Location`  | An instance of the `Location` class.                                   |
@@ -95,10 +94,10 @@ Parses a given URL input into a `URL` instance. If the `host` is not provided, i
 
 <summary>Parameters</summary>
 
-| Parameter | Type       | Default | Description |
-|-----------|------------|---------|-------------|
+| Parameter | Type       | Default | Description                                                                |
+| --------- | ---------- | ------- | -------------------------------------------------------------------------- |
 | `url`     | `UrlInput` | -       | The URL string, `URL` instance, `Location` instance or UrlObject to parse. |
-| `params`  | `boolean`  | `true`  | Whether to keep search parameters or not. |
+| `params`  | `boolean`  | `true`  | Whether to keep search parameters or not.                                  |
 
 </details>
 
@@ -116,6 +115,87 @@ A new instance of `URL`.
 
 ---
 
+<details>
+
+<summary>Examples</summary>
+
+```ts
+import { Url } from "@alessiofrittoli/url-utils";
+
+console.log(Url.parse("/pathname"));
+
+/**
+ * Outputs:
+ *
+ * URL {
+ *   href: 'http://unresolved/pathname',
+ *   origin: 'http://unresolved',
+ *   protocol: 'http:',
+ *   username: '',
+ *   password: '',
+ *   host: 'unresolved',
+ *   hostname: 'unresolved',
+ *   port: '',
+ *   pathname: '/pathname',
+ *   search: '',
+ *   searchParams: URLSearchParams {},
+ *   hash: ''
+ * }
+ */
+
+console.log(
+  Url.parse("https://user:pass@example.com:3000/pathname?param=value#hash"),
+);
+
+/**
+ * Outputs:
+ *
+ * URL {
+ *   href: 'https://user:pass@example.com:3000/pathname?param=value#hash',
+ *   origin: 'https://example.com:3000',
+ *   protocol: 'https:',
+ *   username: 'user',
+ *   password: 'pass',
+ *   host: 'example.com:3000',
+ *   hostname: 'example.com',
+ *   port: '3000',
+ *   pathname: '/pathname',
+ *   search: '?param=value',
+ *   searchParams: URLSearchParams { 'param' => 'value' },
+ *   hash: '#hash'
+ * }
+ */
+
+console.log(
+  Url.parse({
+    href: "https://user:pass@example.com:3000/pathname?param=value#hash",
+  }),
+);
+
+/**
+ * Outputs:
+ *
+ * URL {
+ *   href: 'https://user:pass@example.com:3000/pathname?param=value#hash',
+ *   origin: 'https://example.com:3000',
+ *   protocol: 'https:',
+ *   username: 'user',
+ *   password: 'pass',
+ *   host: 'example.com:3000',
+ *   hostname: 'example.com',
+ *   port: '3000',
+ *   pathname: '/pathname',
+ *   search: '?param=value',
+ *   searchParams: URLSearchParams { 'param' => 'value' },
+ *   hash: '#hash'
+ * }
+ */
+```
+
+</details>
+
+---
+
 ###### `Url.format()`
 
 Formats a given URL input into a URL string. If the `hostname` is `unresolved`, it returns a relative URL string.
@@ -124,10 +204,10 @@ Formats a given URL input into a URL string. If the `hostname` is `unresolved`, 
 
 <summary>Parameters</summary>
 
-| Parameter | Type       | Default | Description |
-|-----------|------------|---------|-------------|
+| Parameter | Type       | Default | Description                                                                 |
+| --------- | ---------- | ------- | --------------------------------------------------------------------------- |
 | `url`     | `UrlInput` | -       | The URL string, `URL` instance, `Location` instance or UrlObject to format. |
-| `params`  | `boolean`  | `true`  | Whether to keep search parameters or not. |
+| `params`  | `boolean`  | `true`  | Whether to keep search parameters or not.                                   |
 
 </details>
 
@@ -145,15 +225,34 @@ The formatted URL string.
 
 ---
 
-#### Check functions
+<details>
 
-##### Importing functions
+<summary>Examples</summary>
 
 ```ts
-import { ... } from '@alessiofrittoli/url-utils/check'
+import { Url } from "@alessiofrittoli/url-utils";
+
+console.log(Url.format({ pathname: "/pathname" })); // Outputs: "/pathname"
+
+console.log(
+  Url.format({
+    auth: "user:pass",
+    hostname: "example.com",
+    port: 3000,
+    pathname: "/pathname",
+    hash: "hash",
+    query: { param: "value" },
+    // search: '?param=value', // or
+    // query: new URLSearchParams( { param: 'value' } ), // or
+  }),
+); // Outputs: "http://user:pass@example.com:3000/pathname?param=value#hash"
 ```
 
+</details>
+
 ---
+
+#### Check functions
 
 ##### `isExternalUrl`
 
@@ -162,9 +261,9 @@ Determines if a given URL is external compared to a provided or default location
 <details>
 <summary>Parameters</summary>
 
-| Parameter  | Type            | Default | Description |
-|------------|-----------------|---------|-------------|
-| `url`      | `UrlInput` | - | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the URL to be checked. |
+| Parameter  | Type       | Default           | Description                                                                                                                                                                  |
+| ---------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `url`      | `UrlInput` | -                 | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the URL to be checked.                                                                       |
 | `location` | `UrlInput` | `window.location` | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the current location. Defaults to `window.location` if available in the browser environment. |
 
 </details>
@@ -187,13 +286,15 @@ Type: `boolean`
 <summary>Example usage</summary>
 
 ```ts
+import { isExternalUrl } from "@alessiofrittoli/url-utils";
+
 // External URL check
-const result1 = isExternalUrl( 'https://example.com', 'https://mywebsite.com' )
-console.log( result1 ) // true
+const result1 = isExternalUrl("https://example.com", "https://mywebsite.com");
+console.log(result1); // true
 
 // Internal URL check
-const result2 = isExternalUrl( '/about', 'https://mywebsite.com' )
-console.log( result2 ) // false
+const result2 = isExternalUrl("/about", "https://mywebsite.com");
+console.log(result2); // false
 ```
 
 </details>
@@ -207,9 +308,9 @@ Checks if a given URL is absolute.
 <details>
 <summary>Parameters</summary>
 
-| Parameter  | Type                         | Description |
-|------------|------------------------------|-------------|
-| `url`      | `UrlInput` | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the URL to be checked. |
+| Parameter | Type       | Description                                                                                            |
+| --------- | ---------- | ------------------------------------------------------------------------------------------------------ |
+| `url`     | `UrlInput` | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the URL to be checked. |
 
 </details>
 
@@ -231,13 +332,15 @@ Type: `boolean`
 <summary>Example usage</summary>
 
 ```ts
+import { isExternalUrl } from "@alessiofrittoli/url-utils";
+
 // Absolute URL check
-const result1 = isAbsoluteUrl( 'https://example.com' )
-console.log( result1 ) // true
+const result1 = isAbsoluteUrl("https://example.com");
+console.log(result1); // true
 
 // Relative URL check
-const result2 = isAbsoluteUrl( '/about' )
-console.log( result2 ) // false
+const result2 = isAbsoluteUrl("/about");
+console.log(result2); // false
 ```
 
 </details>
@@ -245,14 +348,6 @@ console.log( result2 ) // false
 ---
 
 #### Various functions
-
-##### Importing functions
-
-```ts
-import { ... } from '@alessiofrittoli/url-utils/lib'
-```
-
----
 
 ##### `getCurrentLocationURL`
 
@@ -275,7 +370,9 @@ The current Window Location URL, `null` if Window object is not defined.
 <summary style="cursor:pointer">Usage</summary>
 
 ```ts
-const currentPathname = getCurrentLocationURL()?.pathname
+import { getCurrentLocationURL } from "@alessiofrittoli/url-utils";
+
+const currentPathname = getCurrentLocationURL()?.pathname;
 ```
 
 </details>
@@ -284,14 +381,6 @@ const currentPathname = getCurrentLocationURL()?.pathname
 
 #### Parse functions
 
-##### Importing functions
-
-```ts
-import { ... } from '@alessiofrittoli/url-utils/parse'
-```
-
----
-
 ##### `slugify`
 
 Converts a given string into a URL-friendly slug.
@@ -299,11 +388,11 @@ Converts a given string into a URL-friendly slug.
 <details>
 <summary>Parameters</summary>
 
-| Parameter   | Type      | Default | Description |
-|-------------|-----------|---------|-------------|
-| `text`      | `string`  | -       | A `string` to be converted into a slug. |
+| Parameter   | Type      | Default | Description                                                                                                                                                               |
+| ----------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `text`      | `string`  | -       | A `string` to be converted into a slug.                                                                                                                                   |
 | `trim`      | `boolean` | `true`  | A `boolean` indicating whether to trim whitespace from both ends of the string. This options is pretty usefull when using `slugify` to transform user input while typing. |
-| `keepSlash` | `boolean` | `false` | A `boolean` indicating whether to retain slashes (/) in the string. |
+| `keepSlash` | `boolean` | `false` | A `boolean` indicating whether to retain slashes (/) in the string.                                                                                                       |
 
 </details>
 
@@ -326,18 +415,22 @@ A `string` representing the slugified version of the input text.
 ###### Basic usage
 
 ```ts
-const slug = slugify( 'Hello World! Let\'s Code.' )
-console.log( slug ) // Outputs: 'hello-world-lets-code'
+import { slugify } from "@alessiofrittoli/url-utils";
+
+const slug = slugify("Hello World! Let's Code.");
+console.log(slug); // Outputs: 'hello-world-lets-code'
 ```
 
 ###### Transforming user input
 
 ```ts
-input.addEventListener( 'input', event => {
-    const input = event.target
-    // setting `trim` to false will allow the user to type whitespace characters that will be converted to hyphen characters, improving typing experience.
-    input.value = slugify( input.value, false )
-} )
+import { slugify } from "@alessiofrittoli/url-utils";
+
+input.addEventListener("input", (event) => {
+  const input = event.target;
+  // setting `trim` to false will allow the user to type whitespace characters that will be converted to hyphen characters, improving typing experience.
+  input.value = slugify(input.value, false);
+});
 ```
 
 </details>
@@ -351,10 +444,10 @@ Extracts the domain name from a given URL.
 <details>
 <summary>Parameters</summary>
 
-| Parameter   | Type       | Default | Description |
-|-------------|------------|---------|-------------|
-| `url`       | `UrlInput` | - | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the URL. |
-| `subdomain` | `boolean`  | `true`  | A `boolean` indicating whether to include subdomains in the result. |
+| Parameter   | Type       | Default | Description                                                                              |
+| ----------- | ---------- | ------- | ---------------------------------------------------------------------------------------- |
+| `url`       | `UrlInput` | -       | A URL `string`, `URL` instance, `Location` instance or `UrlObject` representing the URL. |
+| `subdomain` | `boolean`  | `true`  | A `boolean` indicating whether to include subdomains in the result.                      |
 
 </details>
 
@@ -377,15 +470,17 @@ A `string` representing the domain name.
 ###### Basic usage
 
 ```ts
-const domain = getDomain( 'https://www.sub.example.com/path' )
-console.log( domain ) // 'sub.example.com'
+import { getDomain } from "@alessiofrittoli/url-utils";
+
+const domain = getDomain("https://www.sub.example.com/path");
+console.log(domain); // 'sub.example.com'
 ```
 
 ###### Getting 1st level domain name
 
 ```ts
-const domain = getDomain( 'https://www.sub.example.com/path', false )
-console.log( domain ) // 'example.com'
+const domain = getDomain("https://www.sub.example.com/path", false);
+console.log(domain); // 'example.com'
 ```
 
 </details>
@@ -393,14 +488,6 @@ console.log( domain ) // 'example.com'
 ---
 
 #### Slash functions
-
-##### Importing functions
-
-```ts
-import { ... } from '@alessiofrittoli/url-utils/slash'
-```
-
----
 
 ##### `backToForwardSlashes`
 
@@ -410,7 +497,7 @@ Converts all backslashes (`\`) in a string to forward slashes (`/`).
 <summary>Parameters</summary>
 
 | Parameter | Type     | Description            |
-|-----------|----------|------------------------|
+| --------- | -------- | ---------------------- |
 | `input`   | `string` | A `string` to process. |
 
 </details>
@@ -432,7 +519,9 @@ A `string` with all backslashes replaced by forward slashes.
 <summary>Example usage</summary>
 
 ```ts
-console.log( backToForwardSlashes( 'path\\to\\file' ) ) // Outputs: 'path/to/file'
+import { backToForwardSlashes } from "@alessiofrittoli/url-utils";
+
+console.log(backToForwardSlashes("path\\to\\file")); // Outputs: 'path/to/file'
 ```
 
 </details>
@@ -447,7 +536,7 @@ Converts all forward slashes (`/`) in a string to backslashes (`\`).
 <summary>Parameters</summary>
 
 | Parameter | Type     | Description            |
-|-----------|----------|------------------------|
+| --------- | -------- | ---------------------- |
 | `input`   | `string` | A `string` to process. |
 
 </details>
@@ -469,7 +558,9 @@ A `string` with all forward slashes replaced by backslashes.
 <summary>Example usage</summary>
 
 ```ts
-console.log( forwardToBackSlashes( 'path/to/file' ) ) // Outputs: 'path\to\file'
+import { forwardToBackSlashes } from "@alessiofrittoli/url-utils";
+
+console.log(forwardToBackSlashes("path/to/file")); // Outputs: 'path\to\file'
 ```
 
 </details>
@@ -484,7 +575,7 @@ Adds a leading slash (`/` or `\`) to a `string` if it doesn’t already have one
 <summary>Parameters</summary>
 
 | Parameter | Type     | Default | Description                            |
-|-----------|----------|---------|----------------------------------------|
+| --------- | -------- | ------- | -------------------------------------- |
 | `input`   | `string` | -       | A `string` to process.                 |
 | `slash`   | `/ \| \` | `/`     | The type of slash to add (`/` or `\`). |
 
@@ -507,8 +598,10 @@ A `string` with the specified leading slash.
 <summary>Example usage</summary>
 
 ```ts
-console.log( addLeadingSlash( 'path/to/file' ) ) // Outputs: '/path/to/file'
-console.log( addLeadingSlash( 'path\\to\\file', '\\' ) ) // Outputs: '\path\to\file'
+import { addLeadingSlash } from "@alessiofrittoli/url-utils";
+
+console.log(addLeadingSlash("path/to/file")); // Outputs: '/path/to/file'
+console.log(addLeadingSlash("path\\to\\file", "\\")); // Outputs: '\path\to\file'
 ```
 
 </details>
@@ -523,7 +616,7 @@ Removes any leading slashes (`/` or `\`) from a string.
 <summary>Parameters</summary>
 
 | Parameter | Type     | Description            |
-|-----------|----------|------------------------|
+| --------- | -------- | ---------------------- |
 | `input`   | `string` | A `string` to process. |
 
 </details>
@@ -545,8 +638,10 @@ A `string` without leading slashes.
 <summary>Example usage</summary>
 
 ```ts
-console.log( removeLeadingSlash( '/path/to/file' ) ) // Outputs: 'path/to/file'
-console.log( removeLeadingSlash( '\\path\\to\\file' ) ) // Outputs: 'path\to\file'
+import { removeLeadingSlash } from "@alessiofrittoli/url-utils";
+
+console.log(removeLeadingSlash("/path/to/file")); // Outputs: 'path/to/file'
+console.log(removeLeadingSlash("\\path\\to\\file")); // Outputs: 'path\to\file'
 ```
 
 </details>
@@ -561,7 +656,7 @@ Adds a trailing slash (`/` or `\`) to a `string` if it doesn’t already have on
 <summary>Parameters</summary>
 
 | Parameter | Type     | Default | Description                            |
-|-----------|----------|---------|----------------------------------------|
+| --------- | -------- | ------- | -------------------------------------- |
 | `input`   | `string` | -       | A `string` to process.                 |
 | `slash`   | `/ \| \` | `/`     | The type of slash to add (`/` or `\`). |
 
@@ -584,8 +679,10 @@ A `string` with the specified trailing slash.
 <summary>Example usage</summary>
 
 ```ts
-console.log( addTrailingSlash( 'path/to/file' ) ) // Outputs: 'path/to/file/'
-console.log( addTrailingSlash( 'path\\to\\file', '\\' ) ) // Outputs: 'path\to\file\'
+import { addTrailingSlash } from "@alessiofrittoli/url-utils";
+
+console.log(addTrailingSlash("path/to/file")); // Outputs: 'path/to/file/'
+console.log(addTrailingSlash("path\\to\\file", "\\")); // Outputs: 'path\to\file\'
 ```
 
 </details>
@@ -600,7 +697,7 @@ Removes any trailing slashes (`/` or `\`) from a string.
 <summary>Parameters</summary>
 
 | Parameter | Type     | Description            |
-|-----------|----------|------------------------|
+| --------- | -------- | ---------------------- |
 | `input`   | `string` | A `string` to process. |
 
 </details>
@@ -622,8 +719,10 @@ A `string` without trailing slashes.
 <summary>Example usage</summary>
 
 ```ts
-console.log( removeTrailingSlash( 'path/to/file/' ) ) // Outputs: 'path/to/file'
-console.log( removeTrailingSlash( 'path\\to\\file\\' ) ) // Outputs: 'path\\to\\file'
+import { removeTrailingSlash } from "@alessiofrittoli/url-utils";
+
+console.log(removeTrailingSlash("path/to/file/")); // Outputs: 'path/to/file'
+console.log(removeTrailingSlash("path\\to\\file\\")); // Outputs: 'path\\to\\file'
 ```
 
 </details>

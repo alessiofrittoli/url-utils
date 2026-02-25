@@ -1,9 +1,14 @@
 import type { UrlObject as NodeUrlObject } from 'url'
 import { addTrailingCharacter } from '@alessiofrittoli/web-utils'
 import { removeTrailingSlash } from '@/slash'
+import { ParsedUrlQueryInput } from 'querystring';
 
 
-export type UrlObject = NodeUrlObject
+export interface UrlObject extends Omit<NodeUrlObject, 'query'>
+{
+	query?: string | ParsedUrlQueryInput | URLSearchParams | null
+}
+
 
 /**
  * The Url parse/format accepted input.
