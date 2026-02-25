@@ -204,4 +204,12 @@ describe( 'Url.format()', () => {
 
 	} )
 
+
+	it( 'supports Data URI schemes', () => {
+		
+		expect( Url.format( 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+AkAAP8A+7Xdu1sAAAAASUVORK5CYII=' ) )
+			.toBe( 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+AkAAP8A+7Xdu1sAAAAASUVORK5CYII=' )
+		
+	} )
+
 } )
