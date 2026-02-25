@@ -1,4 +1,4 @@
-import { getCurrentLocationURL } from '@/lib'
+import { getCurrentLocationURL } from '@/getCurrentLocationUrl'
 
 
 describe( 'getCurrentLocationURL', () => {

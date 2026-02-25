@@ -1,4 +1,4 @@
-import { Url, type UrlObject } from '@/index'
+import { Url, type UrlObject } from '@/Url'
 
 
 describe( 'Url.parse()', () => {

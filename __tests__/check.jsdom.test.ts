@@ -3,7 +3,7 @@
  * @jest-environment-options { "url": "http://localhost:3000/pathname" }
  */
 
-import { isExternalUrl } from "@/check"
+import { isExternalUrl } from '@/check'
 
 describe( 'isExternalUrl', () => {
 

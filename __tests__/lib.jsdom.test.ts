@@ -3,7 +3,7 @@
  * @jest-environment-options { "url": "http://localhost:3000/pathname?query=value" }
  */
 
-import { getCurrentLocationURL } from '@/lib'
+import { getCurrentLocationURL } from '@/getCurrentLocationUrl'
 
 
 describe( 'getCurrentLocationURL', () => {

@@ -1,4 +1,4 @@
-import { Url } from '..'
+import { Url } from '.'
 
 /**
  * Get current Window Location URL.
