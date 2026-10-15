@@ -1,40 +1,64 @@
-# URL utils 🔗
+<h1 align="center">URL utils 🔗</h1>
+<h2 align="center">
+  TypeScript URL utility library
+</h2>
+<p align="center">
+  <a href="https://npmjs.org/package/@alessiofrittoli/url-utils">
+    <img src="https://img.shields.io/npm/v/@alessiofrittoli/url-utils" alt="Latest version"/>
+  </a>
+  <a href="https://coveralls.io/github/alessiofrittoli/url-utils">
+    <img src="https://coveralls.io/repos/github/alessiofrittoli/url-utils/badge.svg" alt="Test coverage"/>
+  </a>
+  <a href="https://socket.dev/npm/package/@alessiofrittoli/url-utils/overview">
+    <img src="https://socket.dev/api/badge/npm/package/@alessiofrittoli/url-utils" alt="Socket Security score"/>
+  </a>
+  <a href="https://npmjs.org/package/@alessiofrittoli/url-utils">
+    <img src="https://img.shields.io/npm/dm/@alessiofrittoli/url-utils.svg" alt="npm downloads"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/url-utils">
+    <img src="https://badgen.net/bundlephobia/dependency-count/@alessiofrittoli/url-utils" alt="Dependencies"/>
+  </a>
+  <a href="https://libraries.io/npm/%40alessiofrittoli%2Furl-utils">
+    <img src="https://img.shields.io/librariesio/release/npm/@alessiofrittoli/url-utils" alt="Dependencies status"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/url-utils">
+    <img src="https://badgen.net/bundlephobia/min/@alessiofrittoli/url-utils" alt="minified"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/url-utils">
+    <img src="https://badgen.net/bundlephobia/minzip/@alessiofrittoli/url-utils" alt="minizipped"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/url-utils">
+    <img src="https://badgen.net/bundlephobia/tree-shaking/@alessiofrittoli/url-utils" alt="Tree shakable"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/sponsors/alessiofrittoli">
+    <img src="https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2" alt="Fund this package"/>
+  </a>
+</p>
 
-[![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![Socket Status][socket-badge]][socket-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
-
-[![GitHub Sponsor][sponsor-badge]][sponsor-url]
-
-[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Furl-utils
-[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Furl-utils
-[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/url-utils/badge.svg
-[coverage-url]: https://coveralls.io/github/alessiofrittoli/url-utils
-[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/url-utils
-[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/url-utils/overview
-[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Furl-utils.svg
-[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Furl-utils
-[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Furl-utils
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
 
-## TypeScript URL utility library
-
-### Table of Contents
+### Table of Content
 
 - [Getting started](#getting-started)
 - [What's Changed](#whats-changed)
+- [Development](#development)
+  - [Local development](#local-development)
+  - [Production build](#production-build)
+  - [Unit tests](#unit-tests)
+    - [Run tests with coverage](#run-tests-with-coverage)
+  - [Contributing](#contributing)
+  - [Security](#security)
 - [API Reference](#api-reference)
   - [Url utility Class](#url-utility-class)
   - [Check functions](#check-functions)
   - [Various functions](#various-functions)
   - [Parse functions](#parse-functions)
   - [Slash functions](#slash-functions)
-- [Development](#development)
-  - [Install depenendencies](#install-depenendencies)
-  - [Build the source code](#build-the-source-code)
-  - [ESLint](#eslint)
-  - [Jest](#jest)
-- [Contributing](#contributing)
-- [Security](#security)
 - [Credits](#made-with-)
 
 ---
@@ -60,6 +84,84 @@ pnpm i @alessiofrittoli/url-utils
 #### Updates in the latest release 🎉
 
 - Removed subpath exports delivering smaller package size
+
+---
+
+### Development
+
+Run the following to start development
+
+```shell
+nvm use
+
+pnpm i
+```
+
+#### Local development
+
+Run the following
+
+```shell
+pnpm dev
+```
+
+This will generate unminified output code, sourcemaps and will enable source file watcher.
+
+---
+
+#### Production build
+
+Run the following to create a local production build
+
+```shell
+pnpm build
+```
+
+This will generate minified output code without sourcemaps.
+
+---
+
+#### Unit tests
+
+Run all the defined test suites by running the following:
+
+```shell
+# Run tests and watch file changes.
+pnpm test:watch
+
+# Run tests in a CI environment.
+pnpm test:ci
+```
+
+---
+
+##### Run tests with coverage
+
+An HTTP server is then started to serve coverage files from `./coverage` folder.
+
+⚠️ You may see a blank page the first time you run this command. Simply refresh the browser to see the updates.
+
+```shell
+pnpm test:coverage:serve
+```
+
+---
+
+#### Contributing
+
+Contributions are truly welcome!
+
+Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
+
+Help keep this project up to date with [GitHub Sponsor][sponsor-url].
+
+[![GitHub Sponsor][sponsor-badge]][sponsor-url]
+
+---
+
+#### Security
+
+If you believe you have found a security vulnerability, we encourage you to **_responsibly disclose this and NOT open a public issue_**. We will investigate all legitimate reports. Email `security@alessiofrittoli.it` to disclose any security vulnerabilities.
 
 ---
 
@@ -120,9 +222,9 @@ A new instance of `URL`.
 <summary>Examples</summary>
 
 ```ts
-import { Url } from "@alessiofrittoli/url-utils";
+import { Url } from '@alessiofrittoli/url-utils'
 
-console.log(Url.parse("/pathname"));
+console.log(Url.parse('/pathname'))
 
 /**
  * Outputs:
@@ -143,9 +245,7 @@ console.log(Url.parse("/pathname"));
  * }
  */
 
-console.log(
-  Url.parse("https://user:pass@example.com:3000/pathname?param=value#hash"),
-);
+console.log(Url.parse('https://user:pass@example.com:3000/pathname?param=value#hash'))
 
 /**
  * Outputs:
@@ -168,9 +268,9 @@ console.log(
 
 console.log(
   Url.parse({
-    href: "https://user:pass@example.com:3000/pathname?param=value#hash",
+    href: 'https://user:pass@example.com:3000/pathname?param=value#hash',
   }),
-);
+)
 
 /**
  * Outputs:
@@ -230,22 +330,22 @@ The formatted URL string.
 <summary>Examples</summary>
 
 ```ts
-import { Url } from "@alessiofrittoli/url-utils";
+import { Url } from '@alessiofrittoli/url-utils'
 
-console.log(Url.format({ pathname: "/pathname" })); // Outputs: "/pathname"
+console.log(Url.format({ pathname: '/pathname' })) // Outputs: "/pathname"
 
 console.log(
   Url.format({
-    auth: "user:pass",
-    hostname: "example.com",
+    auth: 'user:pass',
+    hostname: 'example.com',
     port: 3000,
-    pathname: "/pathname",
-    hash: "hash",
-    query: { param: "value" },
+    pathname: '/pathname',
+    hash: 'hash',
+    query: { param: 'value' },
     // search: '?param=value', // or
     // query: new URLSearchParams( { param: 'value' } ), // or
   }),
-); // Outputs: "http://user:pass@example.com:3000/pathname?param=value#hash"
+) // Outputs: "http://user:pass@example.com:3000/pathname?param=value#hash"
 ```
 
 </details>
@@ -286,15 +386,15 @@ Type: `boolean`
 <summary>Example usage</summary>
 
 ```ts
-import { isExternalUrl } from "@alessiofrittoli/url-utils";
+import { isExternalUrl } from '@alessiofrittoli/url-utils'
 
 // External URL check
-const result1 = isExternalUrl("https://example.com", "https://mywebsite.com");
-console.log(result1); // true
+const result1 = isExternalUrl('https://example.com', 'https://mywebsite.com')
+console.log(result1) // true
 
 // Internal URL check
-const result2 = isExternalUrl("/about", "https://mywebsite.com");
-console.log(result2); // false
+const result2 = isExternalUrl('/about', 'https://mywebsite.com')
+console.log(result2) // false
 ```
 
 </details>
@@ -332,15 +432,15 @@ Type: `boolean`
 <summary>Example usage</summary>
 
 ```ts
-import { isExternalUrl } from "@alessiofrittoli/url-utils";
+import { isExternalUrl } from '@alessiofrittoli/url-utils'
 
 // Absolute URL check
-const result1 = isAbsoluteUrl("https://example.com");
-console.log(result1); // true
+const result1 = isAbsoluteUrl('https://example.com')
+console.log(result1) // true
 
 // Relative URL check
-const result2 = isAbsoluteUrl("/about");
-console.log(result2); // false
+const result2 = isAbsoluteUrl('/about')
+console.log(result2) // false
 ```
 
 </details>
@@ -370,9 +470,9 @@ The current Window Location URL, `null` if Window object is not defined.
 <summary style="cursor:pointer">Usage</summary>
 
 ```ts
-import { getCurrentLocationURL } from "@alessiofrittoli/url-utils";
+import { getCurrentLocationURL } from '@alessiofrittoli/url-utils'
 
-const currentPathname = getCurrentLocationURL()?.pathname;
+const currentPathname = getCurrentLocationURL()?.pathname
 ```
 
 </details>
@@ -415,22 +515,22 @@ A `string` representing the slugified version of the input text.
 ###### Basic usage
 
 ```ts
-import { slugify } from "@alessiofrittoli/url-utils";
+import { slugify } from '@alessiofrittoli/url-utils'
 
-const slug = slugify("Hello World! Let's Code.");
-console.log(slug); // Outputs: 'hello-world-lets-code'
+const slug = slugify("Hello World! Let's Code.")
+console.log(slug) // Outputs: 'hello-world-lets-code'
 ```
 
 ###### Transforming user input
 
 ```ts
-import { slugify } from "@alessiofrittoli/url-utils";
+import { slugify } from '@alessiofrittoli/url-utils'
 
-input.addEventListener("input", (event) => {
-  const input = event.target;
+input.addEventListener('input', event => {
+  const input = event.target
   // setting `trim` to false will allow the user to type whitespace characters that will be converted to hyphen characters, improving typing experience.
-  input.value = slugify(input.value, false);
-});
+  input.value = slugify(input.value, false)
+})
 ```
 
 </details>
@@ -470,17 +570,17 @@ A `string` representing the domain name.
 ###### Basic usage
 
 ```ts
-import { getDomain } from "@alessiofrittoli/url-utils";
+import { getDomain } from '@alessiofrittoli/url-utils'
 
-const domain = getDomain("https://www.sub.example.com/path");
-console.log(domain); // 'sub.example.com'
+const domain = getDomain('https://www.sub.example.com/path')
+console.log(domain) // 'sub.example.com'
 ```
 
 ###### Getting 1st level domain name
 
 ```ts
-const domain = getDomain("https://www.sub.example.com/path", false);
-console.log(domain); // 'example.com'
+const domain = getDomain('https://www.sub.example.com/path', false)
+console.log(domain) // 'example.com'
 ```
 
 </details>
@@ -519,9 +619,9 @@ A `string` with all backslashes replaced by forward slashes.
 <summary>Example usage</summary>
 
 ```ts
-import { backToForwardSlashes } from "@alessiofrittoli/url-utils";
+import { backToForwardSlashes } from '@alessiofrittoli/url-utils'
 
-console.log(backToForwardSlashes("path\\to\\file")); // Outputs: 'path/to/file'
+console.log(backToForwardSlashes('path\\to\\file')) // Outputs: 'path/to/file'
 ```
 
 </details>
@@ -558,9 +658,9 @@ A `string` with all forward slashes replaced by backslashes.
 <summary>Example usage</summary>
 
 ```ts
-import { forwardToBackSlashes } from "@alessiofrittoli/url-utils";
+import { forwardToBackSlashes } from '@alessiofrittoli/url-utils'
 
-console.log(forwardToBackSlashes("path/to/file")); // Outputs: 'path\to\file'
+console.log(forwardToBackSlashes('path/to/file')) // Outputs: 'path\to\file'
 ```
 
 </details>
@@ -598,10 +698,10 @@ A `string` with the specified leading slash.
 <summary>Example usage</summary>
 
 ```ts
-import { addLeadingSlash } from "@alessiofrittoli/url-utils";
+import { addLeadingSlash } from '@alessiofrittoli/url-utils'
 
-console.log(addLeadingSlash("path/to/file")); // Outputs: '/path/to/file'
-console.log(addLeadingSlash("path\\to\\file", "\\")); // Outputs: '\path\to\file'
+console.log(addLeadingSlash('path/to/file')) // Outputs: '/path/to/file'
+console.log(addLeadingSlash('path\\to\\file', '\\')) // Outputs: '\path\to\file'
 ```
 
 </details>
@@ -638,10 +738,10 @@ A `string` without leading slashes.
 <summary>Example usage</summary>
 
 ```ts
-import { removeLeadingSlash } from "@alessiofrittoli/url-utils";
+import { removeLeadingSlash } from '@alessiofrittoli/url-utils'
 
-console.log(removeLeadingSlash("/path/to/file")); // Outputs: 'path/to/file'
-console.log(removeLeadingSlash("\\path\\to\\file")); // Outputs: 'path\to\file'
+console.log(removeLeadingSlash('/path/to/file')) // Outputs: 'path/to/file'
+console.log(removeLeadingSlash('\\path\\to\\file')) // Outputs: 'path\to\file'
 ```
 
 </details>
@@ -679,10 +779,10 @@ A `string` with the specified trailing slash.
 <summary>Example usage</summary>
 
 ```ts
-import { addTrailingSlash } from "@alessiofrittoli/url-utils";
+import { addTrailingSlash } from '@alessiofrittoli/url-utils'
 
-console.log(addTrailingSlash("path/to/file")); // Outputs: 'path/to/file/'
-console.log(addTrailingSlash("path\\to\\file", "\\")); // Outputs: 'path\to\file\'
+console.log(addTrailingSlash('path/to/file')) // Outputs: 'path/to/file/'
+console.log(addTrailingSlash('path\\to\\file', '\\')) // Outputs: 'path\to\file\'
 ```
 
 </details>
@@ -719,100 +819,15 @@ A `string` without trailing slashes.
 <summary>Example usage</summary>
 
 ```ts
-import { removeTrailingSlash } from "@alessiofrittoli/url-utils";
+import { removeTrailingSlash } from '@alessiofrittoli/url-utils'
 
-console.log(removeTrailingSlash("path/to/file/")); // Outputs: 'path/to/file'
-console.log(removeTrailingSlash("path\\to\\file\\")); // Outputs: 'path\\to\\file'
+console.log(removeTrailingSlash('path/to/file/')) // Outputs: 'path/to/file'
+console.log(removeTrailingSlash('path\\to\\file\\')) // Outputs: 'path\\to\\file'
 ```
 
 </details>
 
 ---
-
-### Development
-
-#### Install depenendencies
-
-```bash
-npm install
-```
-
-or using `pnpm`
-
-```bash
-pnpm i
-```
-
-#### Build the source code
-
-Run the following command to test and build code for distribution.
-
-```bash
-pnpm build
-```
-
-#### [ESLint](https://www.npmjs.com/package/eslint)
-
-warnings / errors check.
-
-```bash
-pnpm lint
-```
-
-#### [Jest](https://npmjs.com/package/jest)
-
-Run all the defined test suites by running the following:
-
-```bash
-# Run tests and watch file changes.
-pnpm test:watch
-
-# Run tests and watch file changes with jest-environment-jsdom.
-pnpm test:jsdom
-
-# Run tests in a CI environment.
-pnpm test:ci
-
-# Run tests in a CI environment with jest-environment-jsdom.
-pnpm test:ci:jsdom
-```
-
-You can eventually run specific suits like so:
-
-- See [`package.json`](./package.json) file scripts for more info.
-
-```bash
-pnpm test:jest
-pnpm test:jest:jsdom
-```
-
-Run tests with coverage.
-
-An HTTP server is then started to serve coverage files from `./coverage` folder.
-
-⚠️ You may see a blank page the first time you run this command. Simply refresh the browser to see the updates.
-
-```bash
-test:coverage:serve
-```
-
----
-
-### Contributing
-
-Contributions are truly welcome!
-
-Please refer to the [Contributing Doc](./CONTRIBUTING.md) for more information on how to start contributing to this project.
-
-Help keep this project up to date with [GitHub Sponsor][sponsor-url].
-
-[![GitHub Sponsor][sponsor-badge]][sponsor-url]
-
----
-
-### Security
-
-If you believe you have found a security vulnerability, we encourage you to **_responsibly disclose this and NOT open a public issue_**. We will investigate all legitimate reports. Email `security@alessiofrittoli.it` to disclose any security vulnerabilities.
 
 ### Made with ☕
 
