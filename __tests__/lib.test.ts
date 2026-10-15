@@ -1,30 +1,21 @@
 import { getCurrentLocationURL } from '@/getCurrentLocationUrl'
+import { describe, it, expect } from 'vitest'
 
+describe('getCurrentLocationURL', () => {
+	it('returns null if window is not defined', () => {
+		expect(getCurrentLocationURL()).toBeUndefined()
+	})
 
-describe( 'getCurrentLocationURL', () => {
-
-	it( 'returns null if window is not defined', () => {
-
-		expect( getCurrentLocationURL() )
-			.toBeNull()
-
-	} )
-
-
-	it( 'returns null if URL parsing fails', () => {
-
-		Object.defineProperty( global, 'window', {
-			value		: { location: false },
+	it('returns null if URL parsing fails', () => {
+		Object.defineProperty(global, 'window', {
+			value: { location: false },
 			configurable: true,
-			writable	: true,
-		} )
+			writable: true,
+		})
 
-		expect( getCurrentLocationURL() )
-			.toBeNull()
+		expect(getCurrentLocationURL()).toBeUndefined()
 
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		delete ( global as any ).window	
-
-	} )
-
-} )
+		// oxlint-disable-next-line typescript/no-explicit-any
+		delete (global as any).window
+	})
+})
