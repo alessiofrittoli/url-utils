@@ -8,16 +8,19 @@ import { Url, type UrlInput } from '@/index'
  * @returns	True if is an external URL, false otherwise.
  */
 export const isExternalUrl = (url: UrlInput, location?: UrlInput): boolean => {
-	if (typeof window !== 'undefined') {
-		location ||= window.location
-	}
-	if (!location) return false
+	let _location = location
 
-	url = Url.format(Url.parse(url))
-	const currentLocation = Url.parse(location)
+	if (typeof window !== 'undefined') {
+		_location ||= window.location
+	}
+
+	if (!_location) return false
+
+	const _url = Url.format(Url.parse(url))
+	const currentLocation = Url.parse(_location)
 
 	// oxlint-disable-next-line no-useless-escape
-	const match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/)!
+	const match = _url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/)!
 
 	if (
 		typeof match[1] === 'string' &&

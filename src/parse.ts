@@ -4,21 +4,22 @@ import { isAbsoluteUrl } from '@/check'
 /**
  * Slugify text for URL usage.
  *
- * @param	text			The string to slugify.
+ * @param	_text			The string to slugify.
  * @param	trim			( Optional ) Whether to remove whitespace from both sides of a string. Default: `false`.
  * @param	keepSlashes	( Optional ) Whether to keep special characters. Default: `false`.
  *
  * @returns	The slugifed string.
  */
 export const slugify = (text: string, trim: boolean = true, keepSlashes: boolean = false): string => {
-	text = text
+	let _text = text
 		.toString() // Cast to string ( optional )
 		.normalize('NFKD') // The normalize() using NFKD method returns the Unicode Normalization Form of a given string.
 		.toLowerCase() // Convert the string to lowercase letters
-	if (trim) text = text.trim() // Remove whitespace from both sides of a string (optional)
+
+	if (trim) _text = _text.trim() // Remove whitespace from both sides of a string (optional)
 
 	return (
-		text
+		_text
 			.replace(/\s+/g, '-') // Replace spaces with -
 			// oxlint-disable-next-line no-useless-escape
 			.replace(!keepSlashes ? /[^\w\-]+/g : /[^\w\\\/\-]+/g, '') // Remove all non-word chars

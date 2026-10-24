@@ -1,14 +1,28 @@
 {
 	"workbench.colorCustomizations": {
+		// title bar
 		"titleBar.activeBackground": "#00000000",
 		"titleBar.border": "#39CB37",
 		"titleBar.activeForeground": "#F0F0F0",
+		// status bar
 		"statusBar.background": "#191919",
 		"statusBar.border": "#39CB37",
 		"statusBar.foreground": "#F0F0F0",
+		// activity bar
 		"activityBar.activeBorder": "#39CB37",
 		"activityBarBadge.foreground": "#212121",
-		"activityBarBadge.background": "#39CB37"
+		"activityBarBadge.background": "#39CB37",
+		// tab
+		"tab.activeBorderTop": "#39CB37",
+		// buttons
+		"button.background": "#39CB37",
+		"button.foreground": "#212121",
+		"button.hoverBackground": "#7ED67C",
+		"button.separator": "#212121",
+		// secondary buttons
+		"button.secondaryBackground": "#00000000",
+		"button.secondaryForeground": "#F0F0F0",
+		"button.secondaryHoverBackground": "#39CB3720"
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
